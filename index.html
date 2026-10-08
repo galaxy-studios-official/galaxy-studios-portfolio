@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Studios | Spanish Localization & Voice Acting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        space: {
+                            900: '#0B0B14',
+                            800: '#13132B',
+                            700: '#1D1D3A',
+                            600: '#2A2A52',
+                        },
+                        accent: {
+                            purple: '#A855F7',
+                            violet: '#8B5CF6',
+                            cyan: '#06B6D4',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite alternate',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(168, 85, 247, 0.2)' },
+                            '100%': { boxShadow: '0 0 30px rgba(168, 85, 247, 0.6)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0B14;
+            color: #F3F4F6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: rgba(19, 19, 43, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            background: rgba(29, 29, 58, 0.8);
+            border-color: rgba(168, 85, 247, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.25);
+        }
+
+        /* Canvas background */
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 md:p-8 relative selection:bg-accent-purple selection:text-white">
+
+    <canvas id="stars-canvas"></canvas>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed top-5 right-1/2 translate-x-1/2 sm:translate-x-0 sm:right-5 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 ease-out flex items-center gap-3 bg-space-800/90 border border-accent-purple/50 text-white px-5 py-3 rounded-xl shadow-2xl backdrop-blur-md">
+        <i id="toast-icon" class="ph-bold ph-check-circle text-accent-purple text-xl"></i>
+        <span id="toast-message" class="text-sm font-medium">Copied to clipboard!</span>
+    </div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-2xl mx-auto flex flex-col gap-6 sm:gap-8 my-4 z-10">
+
+        <header class="glass-card rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center relative overflow-hidden group">
+            <div class="absolute -top-24 -left-24 w-48 h-48 bg-accent-purple/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-accent-cyan/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Avatar / Logo -->
+            <div class="relative mb-5 group">
+                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-tr from-accent-purple via-accent-violet to-accent-cyan p-1 animate-pulse-glow">
+                    <div class="w-full h-full bg-space-900 rounded-[14px] flex items-center justify-center overflow-hidden">
+                        <i class="ph-duotone ph-planet text-5xl sm:text-6xl text-transparent bg-clip-text bg-gradient-to-tr from-accent-purple to-accent-cyan"></i>
+                    </div>
+                </div>
+                <div class="absolute -bottom-1 -right-1 bg-space-900 border border-space-600 rounded-full p-1.5 text-accent-purple shadow-lg" title="Verified Studio">
+                    <i class="ph-fill ph-seal-check text-lg"></i>
+                </div>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white mb-2 flex items-center justify-center gap-2">
+                Galaxy Studios
+            </h1>
+            <p class="text-accent-cyan/90 font-medium text-xs sm:text-sm uppercase tracking-widest mb-4">
+                Spanish Audio Localization & Game Dev
+            </p>
+
+            <!-- Quick Bio Badges -->
+            <div class="flex flex-wrap justify-center gap-2 mb-6 text-xs text-gray-300">
+                <span class="px-3 py-1 rounded-full bg-space-800/80 border border-space-600 flex items-center gap-1.5">
+                    <i class="ph-bold ph-globe-hemisphere-west text-accent-purple"></i> Latin American Spanish
+                </span>
+                <span class="px-3 py-1 rounded-full bg-space-800/80 border border-space-600 flex items-center gap-1.5">
+                    <i class="ph-bold ph-microphone text-accent-purple"></i> Full Audio Dubbing
+                </span>
+                <span class="px-3 py-1 rounded-full bg-space-800/80 border border-space-600 flex items-center gap-1.5">
+                    <i class="ph-bold ph-game-controller text-accent-cyan"></i> Native Dev Experience
+                </span>
+            </div>
+
+            <!-- Copy Bio Link Button -->
+            <button onclick="copyStudioBio()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-space-800/90 hover:bg-space-700 border border-space-600 hover:border-accent-purple/50 text-gray-300 hover:text-white text-xs font-semibold flex items-center justify-center gap-2 transition-all">
+                <i class="ph-bold ph-copy text-accent-purple"></i>
+                <span>Copy Bio for Forum Profiles</span>
+            </button>
+        </header>
+
+        <section class="glass-card rounded-2xl p-5 sm:p-6">
+            <h2 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-2 flex items-center gap-2">
+                <i class="ph-bold ph-target text-accent-purple"></i> Our Mission
+            </h2>
+            <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+                Empowering indie developers to reach over <span class="text-white font-semibold">500 million Spanish speakers</span> globally. We deliver seamless, highly immersive Spanish text translation, culturally tailored script adaptation, and authentic native voice acting directly tailored for video games.
+            </p>
+        </section>
+
+        <section class="flex flex-col gap-3">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 px-1 flex items-center gap-2">
+                <i class="ph-bold ph-link text-accent-cyan"></i> Connect & Direct Contact
+            </h2>
+
+            <!-- Discord Button -->
+            <a href="https://discord.gg/V2QKQ6b9sE" target="_blank" rel="noopener noreferrer" class="glass-card glass-card-hover rounded-2xl p-4 flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-105 transition-transform">
+                        <i class="ph-bold ph-discord-logo text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-white text-sm sm:text-base">Join Official Discord</h3>
+                        <p class="text-xs text-gray-400">Direct studio chat & developer pitches</p>
+                    </div>
+                </div>
+                <i class="ph-bold ph-arrow-up-right text-gray-500 group-hover:text-indigo-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-xl"></i>
+            </a>
+
+            <!-- Email Button -->
+            <a href="mailto:galaxystudiosofficial@proton.me" class="glass-card glass-card-hover rounded-2xl p-4 flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-accent-purple/10 border border-accent-purple/20 flex items-center justify-center text-accent-purple group-hover:scale-105 transition-transform">
+                        <i class="ph-bold ph-envelope-simple text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-white text-sm sm:text-base">Email Inquiries</h3>
+                        <p class="text-xs text-gray-400">galaxystudiosofficial@proton.me</p>
+                    </div>
+                </div>
+                <i class="ph-bold ph-arrow-up-right text-gray-500 group-hover:text-accent-purple group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-xl"></i>
+            </a>
+        </section>
+
+        <section class="glass-card rounded-2xl p-5 sm:p-6">
+            <h2 class="text-sm font-bold uppercase tracking-wider text-gray-400 mb-4 flex items-center gap-2">
+                <i class="ph-bold ph-sparkle text-accent-cyan"></i> Services Offered
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="p-3 rounded-xl bg-space-800/40 border border-space-700/50 flex items-start gap-3">
+                    <i class="ph-bold ph-translate text-accent-purple text-xl mt-0.5"></i>
+                    <div>
+                        <h3 class="text-xs font-bold text-white uppercase tracking-wider">Latin American Spanish Translation</h3>
+                        <p class="text-xs text-gray-400 mt-1">Gamer-centric localization preserving context, tone, and slang.</p>
+                    </div>
+                </div>
+                <div class="p-3 rounded-xl bg-space-800/40 border border-space-700/50 flex items-start gap-3">
+                    <i class="ph-bold ph-quotes text-accent-cyan text-xl mt-0.5"></i>
+                    <div>
+                        <h3 class="text-xs font-bold text-white uppercase tracking-wider">Script Adaptation & Dubbing</h3>
+                        <p class="text-xs text-gray-400 mt-1">Time-synced script conversion tailored for natural voice acting delivery.</p>
+                    </div>
+                </div>
+                <div class="p-3 rounded-xl bg-space-800/40 border border-space-700/50 flex items-start gap-3">
+                    <i class="ph-bold ph-users-three text-accent-purple text-xl mt-0.5"></i>
+                    <div>
+                        <h3 class="text-xs font-bold text-white uppercase tracking-wider">Native Voice Casting</h3>
+                        <p class="text-xs text-gray-400 mt-1">Professional voice talent equipped with broadcast-quality setups.</p>
+                    </div>
+                </div>
+                <div class="p-3 rounded-xl bg-space-800/40 border border-space-700/50 flex items-start gap-3">
+                    <i class="ph-bold ph-sliders-horizontal text-emerald-400 text-xl mt-0.5"></i>
+                    <div>
+                        <h3 class="text-xs font-bold text-white uppercase tracking-wider">Audio QA & Integration</h3>
+                        <p class="text-xs text-gray-400 mt-1">Cleaned, mastered, and named audio files ready for Unity/Unreal integration.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="w-full max-w-2xl text-center py-6 text-xs text-gray-500 z-10">
+        <p>© 2026 Galaxy Studios. All rights reserved.</p>
+        <p class="mt-1">Bridging Indie Games & Spanish Gaming Communities worldwide.</p>
+    </footer>
+
+    <script>
+        // Copy Studio Bio for Forum Profiles
+        const studioBioText = "Galaxy Studios | Spanish Audio Localization & Game Dev\nConnecting indie games to over 500M Spanish players with full text localization and voice dubbing.\nContact: galaxystudiosofficial@proton.me | Discord: https://discord.gg/V2QKQ6b9sE";
+
+        function copyStudioBio() {
+            const textarea = document.createElement('textarea');
+            textarea.value = studioBioText;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast("Studio bio copied to clipboard!");
+            } catch (err) {
+                showToast("Failed to copy bio.");
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        // Toast Notification System
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+
+            toast.classList.remove('-translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('-translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Background Starfield Effect
+        const canvas = document.getElementById('stars-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let stars = [];
+        const numStars = 120;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < numStars; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 1.2 + 0.3,
+                    alpha: Math.random(),
+                    speed: Math.random() * 0.01 + 0.003
+                });
+            }
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach(star => {
+                star.alpha += star.speed;
+                if (star.alpha > 1 || star.alpha < 0) {
+                    star.speed = -star.speed;
+                }
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(168, 85, 247, ${Math.abs(star.alpha) * 0.7})`;
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animateStars);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.onload = function() {
+            resizeCanvas();
+            animateStars();
+        };
+    </script>
+</body>
+</html>
